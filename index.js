@@ -29,7 +29,7 @@ app.get("/api/:date", (req,res)=>{
     date = new Date(dateInfo);
   }
   console.log(date,req.params.date);
-  if (isNaN(date)){
+  if (!isNaN(date)){
     res.json({"unix": Math.floor(date / 1), "utc": date.toUTCString()});
   }
   else{
