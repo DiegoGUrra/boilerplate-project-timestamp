@@ -29,13 +29,13 @@ app.get("/api/:date", (req,res)=>{
     date = new Date(dateInfo);
   }
   console.log(date,req.params.date);
-  res.json({"unix": Math.floor(date / 1000), "utc": date.toUTCString()});
+  res.json({"unix": Math.floor(date / 1), "utc": date.toUTCString()});
 });
 
 app.get("/api/", (req,res)=>{
   date = new Date();
   console.log(date,req.params.date);
-  res.json({"unix": Math.floor(date / 1000), "utc": date.toUTCString()});
+  res.json({"unix": Math.floor(date / 1), "utc": date.toUTCString()});
 });
 
 
