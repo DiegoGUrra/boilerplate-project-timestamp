@@ -25,8 +25,9 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date", (req,res)=>{
-  date = new Date(req.query.date);
-  res.send({"unix": Math.floor(date / 1000), "utc":date.toUTCString()});
+  date = new Date(req.params.date);
+  console.log(date,req.params.date);
+  res.json({"unix": Math.floor(date / 1000), "utc": date.toUTCString()});
 })
 
 
