@@ -20,11 +20,6 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/", (req,res)=>{
-  date = new Date();
-  console.log(date,req.params.date);
-  res.json({"unix": Math.floor(date / 1000), "utc": date.toUTCString()});
-})
 app.get("/api/:date", (req,res)=>{
   let dateInfo = req.params.date;
   if ( digitsRegExp.test(dateInfo)){
@@ -35,7 +30,14 @@ app.get("/api/:date", (req,res)=>{
   }
   console.log(date,req.params.date);
   res.json({"unix": Math.floor(date / 1000), "utc": date.toUTCString()});
-})
+});
+
+app.get("/api/", (req,res)=>{
+  date = new Date();
+  console.log(date,req.params.date);
+  res.json({"unix": Math.floor(date / 1000), "utc": date.toUTCString()});
+});
+
 
 
 // listen for requests :)
