@@ -4,7 +4,7 @@
 // init project
 var express = require('express');
 var app = express();
-
+const digitsRegExp = /\d/g;
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
 var cors = require('cors');
@@ -25,7 +25,13 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date", (req,res)=>{
-  date = new Date(req.params.date);
+  let dateInfo = req.params.date;
+  if ( digitsRegExp.test(dateInfo)){
+    date = new Date(parseInt(dateInfo,10));
+  }
+  else{
+    date = new Date(dateInfo);
+  }
   console.log(date,req.params.date);
   res.json({"unix": Math.floor(date / 1000), "utc": date.toUTCString()});
 })
